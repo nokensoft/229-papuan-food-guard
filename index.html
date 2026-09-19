@@ -236,6 +236,439 @@
 
 
 
+    
+
+
+
+    <!-- 2. ABOUT US SECTION -->
+    <section id="about" class="py-20 bg-white" x-data="{ openAccordion: 1 }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+                
+                <!-- Kolom Kiri: Judul, Quote, Visi-Misi & Accordion Informasi -->
+                <div class="lg:col-span-7 flex flex-col">
+                    <!-- Section Header -->
+                    <div class="mb-8">
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-brand mt-4 tracking-tight">About Us</h2>
+                        <div class="w-16 h-1 bg-brand/30 rounded-full mt-3"></div>
+                    </div>
+
+                    <!-- Quote -->
+                    <div class="bg-brand-bg/70 p-6 md:p-8 rounded-2xl mb-8 border border-brand/5 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1.5 h-full bg-brand rounded-l-2xl"></div>
+                        <p class="text-base md:text-lg font-medium text-brand leading-relaxed pl-3">
+                            "Papuan Food Guard Community lahir dari kesadaran mendalam akan pentingnya menjaga sistem pangan lokal Papua yang kaya, mandiri, dan berakar pada kearifan leluhur di tengah ancaman alih fungsi lahan dan ketergantungan pangan luar."
+                        </p>
+                    </div>
+
+                    <!-- Visi, Misi, Nilai (Grid 3 Kolom) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-white p-5 rounded-2xl border border-brand/10 shadow-soft card-hover">
+                            <div class="w-9 h-9 bg-brand text-white rounded-xl flex items-center justify-center font-bold text-xs mb-4 shadow-soft">
+                                01
+                            </div>
+                            <h3 class="text-base font-bold text-brand mb-2">Visi Utama</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                Terwujudnya kedaulatan pangan masyarakat Papua yang mandiri, adil, berkeberlanjutan, serta berlandaskan perlindungan hak-hak adat dan ekologi lokal.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-brand/10 shadow-soft card-hover">
+                            <div class="w-9 h-9 bg-brand text-white rounded-xl flex items-center justify-center font-bold text-xs mb-4 shadow-soft">
+                                02
+                            </div>
+                            <h3 class="text-base font-bold text-brand mb-2">Misi Gerakan</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                Mengadvokasi perlindungan lahan pangan adat, mengedukasi generasi muda Papua, serta mendokumentasikan kearifan lokal pengelolaan tanaman tradisional.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-brand/10 shadow-soft card-hover">
+                            <div class="w-9 h-9 bg-brand text-white rounded-xl flex items-center justify-center font-bold text-xs mb-4 shadow-soft">
+                                03
+                            </div>
+                            <h3 class="text-base font-bold text-brand mb-2">Nilai Dasar</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed space-y-1">
+                                <span class="block"><strong class="text-brand">Kearifan Adat:</strong> Pengetahuan lokal.</span>
+                                <span class="block"><strong class="text-brand">Keadilan:</strong> Tanpa merusak alam.</span>
+                                <span class="block"><strong class="text-brand">Solidaritas:</strong> Menguatkan jaringan.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ACCORDION KELOMPOK INFORMASI ABOUT US -->
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-bold text-brand mb-3">Latar Belakang & Reality Pangan Papua</h3>
+
+                        <!-- Accordion Item 1 -->
+                        <div class="border border-brand/10 rounded-2xl overflow-hidden bg-brand-bg/30 transition-all">
+                            <button @click="openAccordion = (openAccordion === 1 ? null : 1)" 
+                                    class="w-full flex items-center justify-between p-4 sm:p-5 text-left font-bold text-brand hover:bg-brand/5 transition-colors">
+                                <span class="flex items-center gap-3 text-sm sm:text-base">
+                                    <i class="fa-solid fa-wheat-awn text-brand"></i>
+                                    Kekayaan & Diversifikasi Pangan Adat
+                                </span>
+                                <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" :class="openAccordion === 1 ? 'rotate-180 text-brand' : 'text-gray-400'"></i>
+                            </button>
+                            <div x-show="openAccordion === 1" x-collapse x-cloak class="p-4 sm:p-5 pt-0 text-xs sm:text-sm text-gray-600 leading-relaxed space-y-3 border-t border-brand/5">
+                                <p>
+                                    Sumber pangan di Tanah Papua memiliki diversifikasi yang tinggi di berbagai zona wilayah (pegunungan, lembah, rawa, pesisir, hingga kepulauan). Sejak dahulu, masyarakat adat memiliki pengetahuan luas mengenai pengelolaan pangan lokal.
+                                </p>
+                                <p>
+                                    Karbohidrat dipenuhi dari ubi-ubian dan sagu, protein dari hewan buruan atau ternak sesuai aturan adat, serta energi/vitamin dari tebu, buah-buahan, dan sayuran. Nilai-nilai adat dalam mengelola dan memproteksi alam menjadi jaminan keberlangsungan hidup warisan leluhur.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 2 -->
+                        <div class="border border-brand/10 rounded-2xl overflow-hidden bg-brand-bg/30 transition-all">
+                            <button @click="openAccordion = (openAccordion === 2 ? null : 2)" 
+                                    class="w-full flex items-center justify-between p-4 sm:p-5 text-left font-bold text-brand hover:bg-brand/5 transition-colors">
+                                <span class="flex items-center gap-3 text-sm sm:text-base">
+                                    <i class="fa-solid fa-triangle-exclamation text-brand"></i>
+                                    Ancaman Pangan Impor & Marginalisasi
+                                </span>
+                                <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" :class="openAccordion === 2 ? 'rotate-180 text-brand' : 'text-gray-400'"></i>
+                            </button>
+                            <div x-show="openAccordion === 2" x-collapse x-cloak class="p-4 sm:p-5 pt-0 text-xs sm:text-sm text-gray-600 leading-relaxed space-y-3 border-t border-brand/5">
+                                <p>
+                                    Masuknya pangan non-lokal (beras, mie instan, dan olahan pabrik) telah menggeser pola makan masyarakat, khususnya di wilayah pinggiran dan perkotaan. Pangan lokal mulai termarginalisasi karena dianggap kurang bergizi secara keliru.
+                                </p>
+                                <p>
+                                    Diperlukan sosialisasi yang jujur dan transparan untuk mengembalikan kebanggaan menu pangan lokal sebagai sumber gizi utama yang sehat bagi generasi Papua.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 3 -->
+                        <div class="border border-brand/10 rounded-2xl overflow-hidden bg-brand-bg/30 transition-all">
+                            <button @click="openAccordion = (openAccordion === 3 ? null : 3)" 
+                                    class="w-full flex items-center justify-between p-4 sm:p-5 text-left font-bold text-brand hover:bg-brand/5 transition-colors">
+                                <span class="flex items-center gap-3 text-sm sm:text-base">
+                                    <i class="fa-solid fa-[#5c723a] fa-store text-brand"></i>
+                                    Tantangan Ekonomi & Mama-Mama Pedagang
+                                </span>
+                                <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" :class="openAccordion === 3 ? 'rotate-180 text-brand' : 'text-gray-400'"></i>
+                            </button>
+                            <div x-show="openAccordion === 3" x-collapse x-cloak class="p-4 sm:p-5 pt-0 text-xs sm:text-sm text-gray-600 leading-relaxed space-y-3 border-t border-brand/5">
+                                <p>
+                                    Di pasar-pasar lokal, mama-mama pedagang asli Papua menghadapi persaingan ketat dan monopoli dari pedagang non-Papua yang memiliki modal lebih besar. Keterbatasan modal membuat mama-mama Papua hanya mengandalkan hasil kebun dan tangkapan laut.
+                                </p>
+                                <p>
+                                    Regulasi perlindungan pemerintah daerah perlu dibarengi dengan pengawasan ketat dan sanksi tegas agar memberikan jaminan keadilan ekonomi bagi pedagang perempuan Papua.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 4 -->
+                        <div class="border border-brand/10 rounded-2xl overflow-hidden bg-brand-bg/30 transition-all">
+                            <button @click="openAccordion = (openAccordion === 4 ? null : 4)" 
+                                    class="w-full flex items-center justify-between p-4 sm:p-5 text-left font-bold text-brand hover:bg-brand/5 transition-colors">
+                                <span class="flex items-center gap-3 text-sm sm:text-base">
+                                    <i class="fa-solid fa-person-breastfeeding text-brand"></i>
+                                    Peran Perempuan, Investasi & Iklim
+                                </span>
+                                <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" :class="openAccordion === 4 ? 'rotate-180 text-brand' : 'text-gray-400'"></i>
+                            </button>
+                            <div x-show="openAccordion === 4" x-collapse x-cloak class="p-4 sm:p-5 pt-0 text-xs sm:text-sm text-gray-600 leading-relaxed space-y-3 border-t border-brand/5">
+                                <p>
+                                    Kaum perempuan adalah aktor kunci pengolahan pangan di rumah tangga. Namun, ekspansi investasi (sawit, tambang, pembalakan) dan perubahan iklim makin mempersempit akses perempuan terhadap hutan dan ruang kelola kebun.
+                                </p>
+                                <p>
+                                    Melalui perdagangan lintas wilayah adat (misal: pertukaran ikan laut dari pesisir dengan ubi/sayur dari pegunungan) serta penguatan solidaritas terorganisir, kedaulatan pangan berbasis perempuan adat terus diperjuangkan secara berkelanjutan.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Kolom Kanan: Foto Portrait 4:5 (Sticky Desktop) -->
+                <div class="lg:col-span-5 w-full lg:sticky lg:top-24">
+                    <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg border border-brand/10 group">
+                        <img src="./img/profile.jpeg" alt="Papuan Food Guard Community" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <!-- Subtle Dark Gradient Overlay at Bottom -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand/80 via-brand/20 to-transparent opacity-80"></div>
+                        
+                        <div class="absolute bottom-6 left-6 right-6 text-white">
+                            <span class="bg-white/20 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full border border-white/20 mb-2 inline-block">
+                                Gerakan Bersama
+                            </span>
+                            <h4 class="text-xl font-bold leading-tight">Perempuan Adat & Kedaulatan Pangan Papua</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    
+    <!-- 3. WHAT WE DO SECTION -->
+    <section id="what-we-do" class="py-20 bg-brand-bg/50" x-data="{ 
+        activeModal: null,
+        programs: [
+            {
+                id: 1,
+                title: 'Konsolidasi & Kolaborasi Komunitas',
+                image: './img/img1.jpeg',
+                desc: 'Kegiatan konsolidasi sebagai salah satu langkah awal untuk merangkul setiap komunitas mama-mama Papua (Perempuan Papua) untuk saling mendukung dan lebih peduli untuk melindungi dan memprioritaskan pangan lokal daripada pangan dari pabrik (bahan makanan olahan).\n\nKegiatan ini telah diawali dengan diskusi dan survey di wilayah Kabupaten Biak-Numfor (Distrik Andey, Biak Utara & Distrik Yendidori, Biak Selatan) dan akan dilanjutkan ke seluruh wilayah adat lainnya di Tanah Papua. Tujuan utamanya adalah mensosialisasikan pentingnya pangan lokal yang lebih sehat dan bergizi daripada pangan olahan pabrik yang mengandung zat kimia berbahaya.'
+            },
+            {
+                id: 2,
+                title: 'Diskusi & Kajian Akademik',
+                image: './img/img2.jpeg',
+                desc: 'Komunitas Komunitas Jaga Makanan Papua (KJMP) melakukan diskusi-diskusi mendalam dan kajian akademik mengenai kondisi pangan lokal serta peran kaum perempuan dalam mengelolanya.\n\nProgram ini merupakan bagian utama dalam rencana kerja 3 tahun (dimulai tahun 2025). Kajian akademik awal telah dilaksanakan di beberapa kampung Kabupaten Biak-Numfor pada Juni 2025 lalu dan akan dilanjutkan dengan Konsultasi Publik serta pemetaan pemanfaatan pangan endemik lokal, yang kemudian diekspansi ke zona wilayah adat lainnya di Papua.'
+            },
+            {
+                id: 3,
+                title: 'Publikasi & Stake-holder Supporting System',
+                image: './img/img3.jpeg',
+                desc: 'Program kerja di bidang advokasi informasi dan publikasi yang berfokus menyuarakkan isu pangan lokal serta peran krusial perempuan Papua dalam perlindungannya.\n\nBidang advokasi ini melibatkan berbagai pemangku kepentingan (stakeholder) yang bergerak di bidang pangan dan perlindungan perempuan di Papua. Tujuannya adalah menciptakan gerakan bersama secara massal dan masif untuk memprioritaskan keberadaan pangan lokal di tanah Papua.'
+            },
+            {
+                id: 4,
+                title: 'Sosialisasi & Peningkatan Gizi Pangan',
+                image: './img/img4.jpeg',
+                desc: 'Program prioritas untuk mengubah persepsi keliru yang menganggap pangan lokal kurang bergizi dibandingkan makanan impor. Mengusung slogan: ”Bukan makan untuk kenyang saja, tetapi untuk memenuhi kebutuhan gizi generasi Papua”.\n\nPangan lokal secara alami telah terbukti menjamin gizi berkualitas bagi generasi Papua sejak dahulu kala. Sosialisasi ini bertujuan mengembalikan kebanggaan dan pengetahuan gizi berbasis tanaman lokal di tingkat keluarga dan masyarakat.'
+            },
+            {
+                id: 5,
+                title: 'Perdagangan Pangan Antar Wilayah Adat',
+                image: './img/img5.jpeg',
+                desc: 'Fasilitas dan sosialisasi forum kerja sama lintas organisasi, LSM, dan kelompok perempuan untuk membangun ekosistem perdagangan pangan lokal antar zona wilayah adat.\n\nMemfasilitasi pertukaran kebutuhan pangan: biota laut & ikan kaya protein dari wilayah pesisir/kepulauan disalurkan ke masyarakat pegunungan, sementara ubi-ubian & sayuran kaya vitamin dari pegunungan disalurkan ke pesisir. Dimulai dari Biak-Numfor dan akan menjangkau seluruh tanah Papua.'
+            },
+            {
+                id: 6,
+                title: 'Penguatan Kedaulatan Pangan Perempuan Adat',
+                image: './img/img6.jpeg',
+                desc: 'Perempuan adat adalah ujung tombak kedaulatan pangan dalam menanam, merawat tanah, dan menjaga wilayah adat. Program ini melawan pergeseran pola konsumsi instan/impor (seperti mie instan & buah impor) yang merusak tatanan gizi lokal.\n\nFokus utama program adalah memperkuat hak perempuan adat untuk menentukan sendiri produksi, distribusi, dan konsumsi pangan lokal, perlindungan benih tradisional secara mandiri, serta membangun ruang belajar dan solidaritas antar perempuan adat Papua.'
+            }
+        ]
+    }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brand mt-4 tracking-tight">What We Do</h2>
+                <div class="w-16 h-1 bg-brand/30 rounded-full mt-3"></div>
+            </div>
+
+            <!-- Grid 3 Kolom x 2 Baris (Aspect Ratio 4:5 Portrait) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <template x-for="item in programs" :key="item.id">
+                    <div @click="activeModal = item" 
+                        class="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-soft cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        
+                        <!-- Background Image -->
+                        <img :src="item.image" :alt="item.title" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        
+                        <!-- Dark Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-900/60 to-black/40 opacity-90 group-hover:opacity-95 transition-opacity"></div>
+                        
+                        <!-- Icon Modal On Hover (Pojok Kanan Atas) -->
+                        <div class="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0">
+                            <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-white group-hover:text-brand transition-colors shadow-lg">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </div>
+                        </div>
+
+                        <!-- Card Content (Center Aligned) -->
+                        <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-center text-white z-10">
+                            <span x-show="item.subtitle" class="text-xs font-semibold text-emerald-300 uppercase tracking-wider mb-2" x-text="item.subtitle"></span>
+                            <h3 class="text-xl font-bold leading-snug text-white" x-text="item.title"></h3>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- DETAIL MODAL 2 KOLOM (Kiri Gambar, Kanan Teks) -->
+        <div x-show="activeModal !== null" 
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/75 backdrop-blur-sm"
+            x-cloak
+            @keydown.escape.window="activeModal = null">
+            
+            <!-- Modal Card Container -->
+            <div @click.away="activeModal = null" 
+                class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl border border-brand/10 relative flex flex-col md:flex-row">
+                
+                <!-- Close Button -->
+                <button @click="activeModal = null" 
+                        class="absolute top-4 right-4 z-20 bg-gray-100 hover:bg-brand text-gray-700 hover:text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors shadow-md">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+
+                <!-- Kolom Kiri: Cover Gambar -->
+                <div class="w-full md:w-5/12 h-56 sm:h-64 md:h-auto relative flex-shrink-0 bg-gray-900">
+                    <img :src="activeModal?.image" :alt="activeModal?.title" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:hidden"></div>
+                </div>
+
+                <!-- Kolom Kanan: Detail Teks (Scrollable jika teks panjang) -->
+                <div class="w-full md:w-7/12 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto max-h-[60vh] md:max-h-[85vh]">
+                    <div class="space-y-4">
+                        <!-- Badge/Subtitle (Opsional) -->
+                        <div x-show="activeModal?.subtitle">
+                            <span class="bg-brand/10 text-brand text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider inline-block" x-text="activeModal?.subtitle"></span>
+                        </div>
+                        
+                        <!-- Judul Program -->
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-brand leading-tight" x-text="activeModal?.title"></h3>
+                        <div class="w-12 h-1 bg-brand/30 rounded-full"></div>
+                        
+                        <!-- Deskripsi Teks -->
+                        <div class="text-gray-600 text-sm sm:text-base leading-relaxed whitespace-pre-line pt-2" x-text="activeModal?.desc"></div>
+                    </div>
+
+                    <!-- Footer Modal / Tombol Tutup -->
+                    <div class="pt-6 mt-6 border-t border-gray-100 flex justify-end">
+                        <button @click="activeModal = null" class="bg-brand text-white font-semibold px-6 py-2.5 rounded-xl text-sm hover:bg-brand/90 transition-colors shadow-soft">
+                            Tutup Detail
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    
+
+
+
+    <!-- 5. CONNECT WITH US SECTION -->
+    <section id="connect" class="py-20 bg-gradient-to-b from-brand-bg/40 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                
+                <!-- Left Info -->
+                <div class="lg:col-span-5 bg-brand text-white p-8 md:p-10 rounded-2xl shadow-soft-xl">
+                    <span class="inline-flex text-xs font-semibold tracking-wide bg-white/15 text-white px-3.5 py-1.5 rounded-full">
+                        Hubungi Kami
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mt-5 mb-4 tracking-tight">Connect With Us</h2>
+                    <p class="text-sm text-white/80 font-medium leading-relaxed mb-8">
+                        Mari berkolaborasi, menjadi relawan, atau mendukung gerakan perlindungan dan pemajuan pangan lokal Papua.
+                    </p>
+
+                    <div class="space-y-5 text-sm">
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 bg-white/15 rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-location-dot text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xs mb-0.5">Sekretariat</h4>
+                                <p class="text-white/75 text-xs">Alamat sementara: Jln.Jeruk Nipis No.117, Gedung YPMD Lt.II, Wahno, Kotaraja, Abepura, Jayapura, Papua. </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 bg-white/15 rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-envelope text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xs mb-0.5">Email</h4>
+                                <p class="text-white/75 text-xs">mamzan584@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 bg-white/15 rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xs mb-0.5">WhatsApp / Kontak</h4>
+                                <p class="text-white/75 text-xs">+6281312186290</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social -->
+                    <div class="mt-10 pt-6 border-t border-white/15 flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand transition-all duration-200">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand transition-all duration-200">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand transition-all duration-200">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="lg:col-span-7 bg-white p-8 md:p-10 rounded-2xl shadow-soft border border-brand/5" x-data="{ submitted: false }">
+                    <h3 class="text-xl font-bold text-brand mb-1.5">Kirim Pesan / Dukungan</h3>
+                    <p class="text-sm text-gray-500 mb-6">Isi formulir di bawah ini untuk terhubung secara langsung dengan tim kami.</p>
+
+                    <div x-show="submitted" class="bg-brand text-white p-6 rounded-2xl mb-6">
+                        <h4 class="font-bold text-base mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check"></i> Terima Kasih!
+                        </h4>
+                        <p class="text-sm text-white/90">Pesan Anda telah terkirim. Tim Papuan Food Guard Community akan segera menghubungi Anda.</p>
+                    </div>
+
+                    <form x-show="!submitted" @submit.prevent="submitted = true" class="space-y-5">
+                        <div>
+                            <label class="block text-xs font-semibold text-brand mb-1.5">Nama Lengkap</label>
+                            <input type="text" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-brand mb-1.5">Email</label>
+                                <input type="email" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-brand mb-1.5">Nomor WhatsApp</label>
+                                <input type="tel" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-brand mb-1.5">Bentuk Dukungan / Kolaborasi</label>
+                            <select class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
+                                <option>Ingin Menjadi Relawan</option>
+                                <option>Mitra Kolaborasi Program</option>
+                                <option>Dukungan Riset / Publikasi</option>
+                                <option>Pertanyaan Umum</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-brand mb-1.5">Pesan / Gagasan Anda</label>
+                            <textarea rows="4" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-modern bg-brand text-white font-semibold py-4 text-sm rounded-xl shadow-soft flex items-center justify-center gap-2">
+                            Kirim Pesan Sekarang <i class="fa-solid fa-paper-plane text-sm"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    
+
+
+
 
     <!-- ==========================================
      SECTION 1: VIDEOS (#videos)
@@ -442,353 +875,7 @@
 
 
 
-    
-    <!-- 2. ABOUT US SECTION -->
-<section id="about" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            
-            <!-- Kolom Kiri: Judul & Konten Teks -->
-            <div class="lg:col-span-7 flex flex-col">
-                <!-- Section Header -->
-                <div class="mb-8">
-                    <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-brand bg-brand/10 px-3.5 py-1.5 rounded-full">
-                        Tentang Kami
-                    </span>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-brand mt-4 tracking-tight">About Us</h2>
-                    <div class="w-16 h-1 bg-brand/30 rounded-full mt-3"></div>
-                </div>
 
-                <!-- Quote -->
-                <div class="bg-brand-bg/70 p-6 md:p-8 rounded-2xl mb-8 border border-brand/5 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-1.5 h-full bg-brand rounded-l-2xl"></div>
-                    <p class="text-base md:text-lg font-medium text-brand leading-relaxed pl-3">
-                        "Papuan Food Guard Community lahir dari kesadaran mendalam akan pentingnya menjaga sistem pangan lokal Papua yang kaya, mandiri, dan berakar pada kearifan leluhur di tengah ancaman alih fungsi lahan dan ketergantungan pangan luar."
-                    </p>
-                </div>
-
-                <!-- Visi, Misi, Nilai (Stacked Vertical / Grid Kiri) -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="bg-white p-5 rounded-2xl border border-brand/8 shadow-soft card-hover">
-                        <div class="w-9 h-9 bg-brand text-white rounded-xl flex items-center justify-center font-bold text-xs mb-4 shadow-soft">
-                            01
-                        </div>
-                        <h3 class="text-base font-bold text-brand mb-2">Visi Utama</h3>
-                        <p class="text-xs text-gray-600 leading-relaxed">
-                            Terwujudnya kedaulatan pangan masyarakat Papua yang mandiri, adil, berkeberlanjutan, serta berlandaskan perlindungan hak-hak adat dan ekologi lokal.
-                        </p>
-                    </div>
-
-                    <div class="bg-white p-5 rounded-2xl border border-brand/8 shadow-soft card-hover">
-                        <div class="w-9 h-9 bg-brand text-white rounded-xl flex items-center justify-center font-bold text-xs mb-4 shadow-soft">
-                            02
-                        </div>
-                        <h3 class="text-base font-bold text-brand mb-2">Misi Gerakan</h3>
-                        <p class="text-xs text-gray-600 leading-relaxed">
-                            Mengadvokasi perlindungan lahan pangan adat, mengedukasi generasi muda Papua, serta mendokumentasikan kearifan lokal pengelolaan tanaman tradisional.
-                        </p>
-                    </div>
-
-                    <div class="bg-white p-5 rounded-2xl border border-brand/8 shadow-soft card-hover">
-                        <div class="w-9 h-9 bg-brand text-white rounded-xl flex items-center justify-center font-bold text-xs mb-4 shadow-soft">
-                            03
-                        </div>
-                        <h3 class="text-base font-bold text-brand mb-2">Nilai Dasar</h3>
-                        <p class="text-xs text-gray-600 leading-relaxed space-y-1">
-                            <span class="block"><strong class="text-brand">Kearifan Adat:</strong> Pengetahuan lokal.</span>
-                            <span class="block"><strong class="text-brand">Keadilan:</strong> Tanpa merusak alam.</span>
-                            <span class="block"><strong class="text-brand">Solidaritas:</strong> Menguatkan jaringan.</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kolom Kanan: Foto Portrait 4:5 -->
-            <div class="lg:col-span-5 w-full">
-                <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg border border-brand/10 group">
-                    <img src="./img/img1.jpeg" alt="Papuan Food Guard Community" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <!-- Subtle Dark Gradient Overlay at Bottom -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand/60 via-transparent to-transparent opacity-60"></div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-
-
-    <!-- 3. WHAT WE DO SECTION -->
-    <section id="what-we-do" class="py-20 bg-brand-bg/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12">
-                <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-brand bg-brand/10 px-3.5 py-1.5 rounded-full">
-                    Fokus Aksi
-                </span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-brand mt-4 tracking-tight">What We Do</h2>
-                <p class="text-sm text-gray-500 font-medium mt-2">4 Pilar Utama Pendekatan Gerakan Jaga Pangan Papua</p>
-                <div class="w-16 h-1 bg-brand/30 rounded-full mt-3"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
-                <!-- Konservasi -->
-                <div class="md:col-span-8 bg-white p-8 rounded-2xl shadow-soft border border-brand/5 flex flex-col justify-between card-hover">
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center">
-                                <i class="fa-solid fa-hands-holding-circle text-lg text-brand"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-brand">1. Konservasi & Bank Benih Lokal</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Mengidentifikasi, mendokumentasikan, dan memelihara keanekaragaman varietas tanaman pangan lokal seperti sagu, keladi (taro), ubi jalar, dan buah-buahan hutan hayati agar tidak punah ditelan modernisasi.
-                        </p>
-                    </div>
-                    <div class="bg-brand-bg/80 px-4 py-3 rounded-xl text-xs font-semibold text-brand flex justify-between items-center">
-                        <span>Status: Pendampingan Aktif Komunitas</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-brand/60"></i>
-                    </div>
-                </div>
-
-                <!-- Edukasi -->
-                <div class="md:col-span-4 bg-brand text-white p-8 rounded-2xl shadow-soft-lg flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center">
-                                <i class="fa-solid fa-graduation-cap text-lg text-brand-accent"></i>
-                            </div>
-                            <h3 class="text-lg font-bold">2. Edukasi & Regenerasi</h3>
-                        </div>
-                        <p class="text-white/85 text-sm leading-relaxed mb-6">
-                            Mendorong keterlibatan pemuda dan pelajar Papua melalui Sekolah Lapangan Pangan Tradisional dan lokakarya pengetahuan ekologi lokal.
-                        </p>
-                    </div>
-                    <span class="text-[11px] font-semibold tracking-wide bg-white/15 text-white px-3 py-1.5 rounded-full inline-block w-fit">Anak Muda Papua</span>
-                </div>
-
-                <!-- Advokasi -->
-                <div class="md:col-span-4 bg-white p-8 rounded-2xl shadow-soft border border-brand/5 flex flex-col justify-between card-hover">
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center">
-                                <i class="fa-solid fa-shield-halved text-lg text-brand"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-brand">3. Advokasi Hak Pangan</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Mendukung pengakuan hukum bagi hutan sagu dan kebun adat, serta mendorong kebijakan publik yang memprioritaskan pangan lokal.
-                        </p>
-                    </div>
-                    <span class="text-xs font-semibold text-brand/70 pt-3 border-t border-brand/10">Pemetaan & Proteksi Adat</span>
-                </div>
-
-                <!-- Ekonomi -->
-                <div class="md:col-span-8 bg-white p-8 rounded-2xl shadow-soft border border-brand/5 flex flex-col justify-between card-hover">
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center">
-                                <i class="fa-solid fa-store text-lg text-brand"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-brand">4. Rantai Nilai & Ekonomi Lokal</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Memperkuat kapasitas pengolahan, pengemasan, dan pemasaran produk pangan olahan lokal agar memiliki daya saing tinggi di pasar lokal maupun nasional tanpa mengorbankan kelestarian alam.
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2.5 text-center text-xs font-semibold">
-                        <div class="px-3 py-2.5 rounded-xl bg-brand-bg text-brand">Pengolahan Sagu</div>
-                        <div class="px-3 py-2.5 rounded-xl bg-brand-bg text-brand">Produk Olahan Keladi</div>
-                        <div class="px-3 py-2.5 rounded-xl bg-brand-bg text-brand col-span-2 md:col-span-1">Pasar Digital</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. OUR PROJECT SECTION -->
-    <section id="our-project" class="py-20 bg-white" x-data="{ filter: 'all' }">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-                <div>
-                    <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-brand bg-brand/10 px-3.5 py-1.5 rounded-full">
-                        Inisiatif Lapangan
-                    </span>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-brand mt-4 tracking-tight">Our Project</h2>
-                    <div class="w-16 h-1 bg-brand/30 rounded-full mt-3"></div>
-                </div>
-
-                <!-- Filter Buttons -->
-                <div class="flex flex-wrap gap-2 text-xs font-semibold">
-                    <button @click="filter = 'all'" :class="filter === 'all' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Semua</button>
-                    <button @click="filter = 'konservasi'" :class="filter === 'konservasi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Konservasi</button>
-                    <button @click="filter = 'edukasi'" :class="filter === 'edukasi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Edukasi</button>
-                    <button @click="filter = 'ekonomi'" :class="filter === 'ekonomi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Ekonomi</button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Project 1 -->
-                <div x-show="filter === 'all' || filter === 'konservasi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft p-6 flex flex-col justify-between card-hover">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-brand/10 text-brand text-[11px] font-semibold px-2.5 py-1 rounded-full">Konservasi</span>
-                            <span class="text-xs font-medium text-brand/70">Berjalan</span>
-                        </div>
-                        <h3 class="text-base font-bold text-brand mb-3">Pemetaan Hutan Sagu Adat</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-6">
-                            Pendokumentasian digital dan pemetaan terpartisipasi wilayah dusun sagu milik komunitas adat di Jayapura dan sekitarnya.
-                        </p>
-                    </div>
-                    <a href="#connect" class="text-sm font-semibold text-brand pt-4 border-t border-brand/10 flex items-center gap-2 hover:gap-3 transition-all">
-                        Lihat Progres <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
-
-                <!-- Project 2 -->
-                <div x-show="filter === 'all' || filter === 'edukasi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft p-6 flex flex-col justify-between card-hover">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-brand/10 text-brand text-[11px] font-semibold px-2.5 py-1 rounded-full">Edukasi</span>
-                            <span class="text-xs font-medium text-brand/70">Rutin</span>
-                        </div>
-                        <h3 class="text-base font-bold text-brand mb-3">Sekolah Lapangan Pangan Papua</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-6">
-                            Program pelatihan langsung di kebun bagi pemuda Papua tentang budidaya tanaman lokal tanpa bahan kimia sintetis.
-                        </p>
-                    </div>
-                    <a href="#connect" class="text-sm font-semibold text-brand pt-4 border-t border-brand/10 flex items-center gap-2 hover:gap-3 transition-all">
-                        Lihat Progres <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
-
-                <!-- Project 3 -->
-                <div x-show="filter === 'all' || filter === 'ekonomi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft p-6 flex flex-col justify-between card-hover">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-brand/10 text-brand text-[11px] font-semibold px-2.5 py-1 rounded-full">Ekonomi</span>
-                            <span class="text-xs font-medium text-brand/70">Inkubasi</span>
-                        </div>
-                        <h3 class="text-base font-bold text-brand mb-3">Pemasaran Hasil Tani Keladi & Sagu</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-6">
-                            Fasilitasi akses pasar langsung bagi mama-mama pedagang dan petani lokal ke konsumen perkotaan.
-                        </p>
-                    </div>
-                    <a href="#connect" class="text-sm font-semibold text-brand pt-4 border-t border-brand/10 flex items-center gap-2 hover:gap-3 transition-all">
-                        Lihat Progres <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. CONNECT WITH US SECTION -->
-    <section id="connect" class="py-20 bg-gradient-to-b from-brand-bg/40 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-                
-                <!-- Left Info -->
-                <div class="lg:col-span-5 bg-brand text-white p-8 md:p-10 rounded-2xl shadow-soft-xl">
-                    <span class="inline-flex text-xs font-semibold tracking-wide bg-white/15 text-white px-3.5 py-1.5 rounded-full">
-                        Hubungi Kami
-                    </span>
-                    <h2 class="text-2xl md:text-3xl font-extrabold mt-5 mb-4 tracking-tight">Connect With Us</h2>
-                    <p class="text-sm text-white/80 font-medium leading-relaxed mb-8">
-                        Mari berkolaborasi, menjadi relawan, atau mendukung gerakan perlindungan dan pemajuan pangan lokal Papua.
-                    </p>
-
-                    <div class="space-y-5 text-sm">
-                        <div class="flex items-start gap-4">
-                            <div class="w-9 h-9 bg-white/15 rounded-xl flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-location-dot text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-xs mb-0.5">Sekretariat</h4>
-                                <p class="text-white/75 text-xs">Alamat sementara: Jln.Jeruk Nipis No.117, Gedung YPMD Lt.II, Wahno, Kotaraja, Abepura, Jayapura, Papua. </p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-9 h-9 bg-white/15 rounded-xl flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-envelope text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-xs mb-0.5">Email</h4>
-                                <p class="text-white/75 text-xs">mamzan584@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-9 h-9 bg-white/15 rounded-xl flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-phone text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-xs mb-0.5">WhatsApp / Kontak</h4>
-                                <p class="text-white/75 text-xs">+6281312186290</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Social -->
-                    <div class="mt-10 pt-6 border-t border-white/15 flex gap-3">
-                        <a href="#" class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand transition-all duration-200">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand transition-all duration-200">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand transition-all duration-200">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Form -->
-                <div class="lg:col-span-7 bg-white p-8 md:p-10 rounded-2xl shadow-soft border border-brand/5" x-data="{ submitted: false }">
-                    <h3 class="text-xl font-bold text-brand mb-1.5">Kirim Pesan / Dukungan</h3>
-                    <p class="text-sm text-gray-500 mb-6">Isi formulir di bawah ini untuk terhubung secara langsung dengan tim kami.</p>
-
-                    <div x-show="submitted" class="bg-brand text-white p-6 rounded-2xl mb-6">
-                        <h4 class="font-bold text-base mb-1 flex items-center gap-2">
-                            <i class="fa-solid fa-circle-check"></i> Terima Kasih!
-                        </h4>
-                        <p class="text-sm text-white/90">Pesan Anda telah terkirim. Tim Papuan Food Guard Community akan segera menghubungi Anda.</p>
-                    </div>
-
-                    <form x-show="!submitted" @submit.prevent="submitted = true" class="space-y-5">
-                        <div>
-                            <label class="block text-xs font-semibold text-brand mb-1.5">Nama Lengkap</label>
-                            <input type="text" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-brand mb-1.5">Email</label>
-                                <input type="email" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-brand mb-1.5">Nomor WhatsApp</label>
-                                <input type="tel" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-brand mb-1.5">Bentuk Dukungan / Kolaborasi</label>
-                            <select class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
-                                <option>Ingin Menjadi Relawan</option>
-                                <option>Mitra Kolaborasi Program</option>
-                                <option>Dukungan Riset / Publikasi</option>
-                                <option>Pertanyaan Umum</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-brand mb-1.5">Pesan / Gagasan Anda</label>
-                            <textarea rows="4" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition resize-none"></textarea>
-                        </div>
-                        <button type="submit" class="w-full btn-modern bg-brand text-white font-semibold py-4 text-sm rounded-xl shadow-soft flex items-center justify-center gap-2">
-                            Kirim Pesan Sekarang <i class="fa-solid fa-paper-plane text-sm"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- FOOTER -->
     <footer class="bg-brand-dark text-white py-12">
