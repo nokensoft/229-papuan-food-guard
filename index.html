@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papuan Food Guard Community — Kondisi Marginalisasi Pangan Lokal di Tanah Papua.</title>
+
+    <!-- favicon -->
+    <link rel="icon" href="./img/logo.png" type="image/x-icon">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#0F512B',
+                            dark: '#09331B',
+                            light: '#166E3C',
+                            bg: '#F4F7F4',
+                            accent: '#D97706'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(15, 81, 43, 0.08)',
+                        'soft-lg': '0 10px 40px -5px rgba(15, 81, 43, 0.12)',
+                        'soft-xl': '0 20px 50px -10px rgba(15, 81, 43, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F8FAF8;
+            color: #09331B;
+        }
+        .btn-modern {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(15, 81, 43, 0.25);
+        }
+        .btn-modern:active {
+            transform: translateY(0);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(15, 81, 43, 0.12);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand selection:text-white" x-data="{ mobileMenuOpen: false }">
+
+    
+    
+    <!-- NAVBAR -->
+    <header x-data="{ mobileMenuOpen: false, mediaDropdownOpen: false, aboutDropdownOpen: false, mobileAboutOpen: false }" class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-brand/10 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center space-x-3">
+                    <img src="./img/logo.png" alt="Papuan Food Guard Logo" class="h-11 w-auto object-contain">
+                    <div>
+                        <span class="text-lg font-bold tracking-tight block text-brand leading-none">Papuan Food Guard</span>
+                        <span class="text-[11px] font-medium text-brand-light tracking-wide uppercase">Community</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-2 font-medium text-sm">
+                    <!-- Home -->
+                    <a href="#home" class="px-4 py-2 rounded-lg text-brand/80 hover:text-brand hover:bg-brand/5 transition">Home</a>
+
+                    <!-- Media Dropdown: Photos, Videos -->
+                    <div class="relative" @click.away="mediaDropdownOpen = false">
+                        <button @click="mediaDropdownOpen = !mediaDropdownOpen" class="px-4 py-2 rounded-lg text-brand/80 hover:text-brand hover:bg-brand/5 transition inline-flex items-center gap-1.5 focus:outline-none">
+                            <span>Media</span>
+                            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200" :class="mediaDropdownOpen ? 'rotate-180' : ''"></i>
+                        </button>
+
+                        <!-- Dropdown Menu -->
+                        <div x-show="mediaDropdownOpen" 
+                            x-transition:enter="transition ease-out duration-150" 
+                            x-transition:enter-start="opacity-0 scale-95 -translate-y-1" 
+                            x-transition:enter-end="opacity-100 scale-100 translate-y-0" 
+                            x-transition:leave="transition ease-in duration-100" 
+                            x-transition:leave-start="opacity-100 scale-100 translate-y-0" 
+                            x-transition:leave-end="opacity-0 scale-95 -translate-y-1" 
+                            class="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-brand/10 py-2 z-50">
+                            
+                            <a href="#photos" @click="mediaDropdownOpen = false" class="block px-4 py-2.5 text-brand/80 hover:text-brand hover:bg-brand/5 text-sm transition">Photos</a>
+                            <a href="#videos" @click="mediaDropdownOpen = false" class="block px-4 py-2.5 text-brand/80 hover:text-brand hover:bg-brand/5 text-sm transition">Videos</a>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <!-- About Dropdown -->
+                    <div class="relative" @click.away="aboutDropdownOpen = false">
+                        <button @click="aboutDropdownOpen = !aboutDropdownOpen" class="px-4 py-2 rounded-lg text-brand/80 hover:text-brand hover:bg-brand/5 transition inline-flex items-center gap-1.5 focus:outline-none">
+                            <span>About</span>
+                            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200" :class="aboutDropdownOpen ? 'rotate-180' : ''"></i>
+                        </button>
+
+                        <!-- Dropdown Menu -->
+                        <div x-show="aboutDropdownOpen" 
+                            x-transition:enter="transition ease-out duration-150" 
+                            x-transition:enter-start="opacity-0 scale-95 -translate-y-1" 
+                            x-transition:enter-end="opacity-100 scale-100 translate-y-0" 
+                            x-transition:leave="transition ease-in duration-100" 
+                            x-transition:leave-start="opacity-100 scale-100 translate-y-0" 
+                            x-transition:leave-end="opacity-0 scale-95 -translate-y-1" 
+                            class="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-brand/10 py-2 z-50">
+                            
+                            <a href="#about" @click="aboutDropdownOpen = false" class="block px-4 py-2.5 text-brand/80 hover:text-brand hover:bg-brand/5 text-sm transition">About Us</a>
+                            <a href="#what-we-do" @click="aboutDropdownOpen = false" class="block px-4 py-2.5 text-brand/80 hover:text-brand hover:bg-brand/5 text-sm transition">What We Do</a>
+                            <a href="#our-project" @click="aboutDropdownOpen = false" class="block px-4 py-2.5 text-brand/80 hover:text-brand hover:bg-brand/5 text-sm transition">Our Project</a>
+                            <a href="#connect" @click="aboutDropdownOpen = false" class="block px-4 py-2.5 text-brand/80 hover:text-brand hover:bg-brand/5 text-sm transition">Connect</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Header CTA / Kontak Button -->
+                <div class="hidden md:block">
+                    <a href="#connect" class="btn-modern bg-brand text-white font-semibold px-5 py-2.5 text-sm rounded-xl inline-flex items-center gap-2 shadow-soft hover:bg-brand/90 transition">
+                        <i class="fa-solid fa-envelope text-xs"></i> Kontak Kami
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-brand p-2.5 rounded-lg hover:bg-brand/5 focus:outline-none transition">
+                        <i class="fa-solid text-xl" :class="mobileMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" 
+            x-transition:enter="transition ease-out duration-200" 
+            x-transition:enter-start="opacity-0 -translate-y-2" 
+            x-transition:enter-end="opacity-100 translate-y-0" 
+            x-transition:leave="transition ease-in duration-150" 
+            x-transition:leave-start="opacity-100" 
+            x-transition:leave-end="opacity-0" 
+            class="md:hidden bg-white border-t border-brand/10 px-4 py-4 space-y-1 shadow-soft-lg">
+            
+            <a href="#home" @click="mobileMenuOpen = false" class="block font-medium text-brand px-4 py-3 rounded-xl hover:bg-brand/5 transition">Home</a>
+            
+            <!-- Mobile About Accordion -->
+            <div>
+                <button @click="mobileAboutOpen = !mobileAboutOpen" class="w-full flex items-center justify-between font-medium text-brand px-4 py-3 rounded-xl hover:bg-brand/5 transition">
+                    <span>About</span>
+                    <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200" :class="mobileAboutOpen ? 'rotate-180' : ''"></i>
+                </button>
+                
+                <div x-show="mobileAboutOpen" class="pl-4 pr-2 py-1 space-y-1 bg-brand/5 rounded-xl mt-1">
+                    <a href="#about" @click="mobileMenuOpen = false" class="block text-sm font-medium text-brand/80 px-4 py-2.5 rounded-lg hover:text-brand hover:bg-brand/5 transition">About Us</a>
+                    <a href="#what-we-do" @click="mobileMenuOpen = false" class="block text-sm font-medium text-brand/80 px-4 py-2.5 rounded-lg hover:text-brand hover:bg-brand/5 transition">What We Do</a>
+                    <a href="#our-project" @click="mobileMenuOpen = false" class="block text-sm font-medium text-brand/80 px-4 py-2.5 rounded-lg hover:text-brand hover:bg-brand/5 transition">Our Project</a>
+                    <a href="#connect" @click="mobileMenuOpen = false" class="block text-sm font-medium text-brand/80 px-4 py-2.5 rounded-lg hover:text-brand hover:bg-brand/5 transition">Connect</a>
+                </div>
+            </div>
+
+            <!-- Mobile Kontak Button -->
+            <a href="#connect" @click="mobileMenuOpen = false" class="block w-full text-center bg-brand text-white font-semibold py-3.5 mt-3 rounded-xl shadow-soft">
+                Kontak Kami
+            </a>
+        </div>
+    </header>
+
+
+    
+    
+
+    <!-- 1. HOME SECTION (HERO) -->
+    <section id="home" class="relative py-24 md:py-32 text-white overflow-hidden bg-gray-900">
+        <!-- Background Image -->
+        <img src="./img/img1.jpeg" alt="Papuan Food Guard Hero" class="absolute inset-0 w-full h-full object-cover object-center">
+
+        <!-- Dark Gradient Overlay (Menjaga teks tetap terlihat jelas) -->
+        <div class="absolute inset-0 bg-gradient-to-b from-gray-950/30 via-gray-900/85 to-gray-950/90"></div>
+
+        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-emerald-300 border border-white/15 text-xs font-semibold px-4 py-2 rounded-full mb-8 shadow-sm">
+                <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                Papuan Food Guard Community
+            </div>
+
+            <!-- Heading -->
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6 tracking-tight">
+                Kondisi Marginalisasi Pangan Lokal 
+                <span class="text-emerald-400">di Tanah Papua </span>
+            </h1>
+
+            <!-- Paragraph -->
+            <p class="text-base sm:text-lg md:text-xl text-gray-300 font-normal mb-10 leading-relaxed max-w-2xl mx-auto">
+                Upaya kami melindungi keberagaman tanaman pangan lokal, memperkuat kearifan masyarakat adat, dan membangun ketahanan pangan berkelanjutan.
+            </p>
+
+            <!-- CTA Buttons (Centered) -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#about" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-8 py-4 text-sm rounded-xl inline-flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-950/50 transition-all duration-200 hover:-translate-y-0.5">
+                    Pelajari Gerakan Kami <i class="fa-solid fa-leaf text-sm"></i>
+                </a>
+                <a href="#our-project" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 text-sm rounded-xl border border-white/20 backdrop-blur-sm inline-flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5">
+                    Lihat Inisiatif
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <!-- ==========================================
+     SECTION 1: VIDEOS (#videos)
+     ========================================== -->
+    <section id="videos" class="py-20 bg-white" x-data="{ filter: 'all' }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-brand bg-brand/10 px-3.5 py-1.5 rounded-full">
+                        Galeri Video
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-brand mt-4 tracking-tight">Featured Videos</h2>
+                    <div class="w-16 h-1 bg-brand/30 rounded-full mt-3"></div>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                    <button @click="filter = 'all'" :class="filter === 'all' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Semua</button>
+                    <button @click="filter = 'konservasi'" :class="filter === 'konservasi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Konservasi</button>
+                    <button @click="filter = 'edukasi'" :class="filter === 'edukasi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Edukasi</button>
+                    <button @click="filter = 'ekonomi'" :class="filter === 'ekonomi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Ekonomi</button>
+                </div>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Video Item 1 -->
+                <div x-show="filter === 'all' || filter === 'konservasi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft overflow-hidden flex flex-col card-hover">
+                    <!-- Video Cover Thumbnail (Aspect Ratio 16:9 YouTube) -->
+                    <div class="relative aspect-video bg-gray-900 group cursor-pointer overflow-hidden">
+                        <img src="https://media.istockphoto.com/id/915865148/id/foto/oven-bumi-di-papua-nugini-disebut-mumu.jpg?s=2048x2048&w=is&k=20&c=819J2rZ5ERr1GaWlqbUD0SPudOsHL831Wf_Urs9U94g=" alt="Pemetaan Hutan Sagu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90 group-hover:opacity-100">
+                        <!-- Overlay Dark Gradient -->
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                        <!-- Play Icon Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-14 h-14 bg-brand/90 text-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-brand transition-all duration-300">
+                                <i class="fa-solid fa-play text-xl ml-1"></i>
+                            </div>
+                        </div>
+                        <!-- Badge Duration -->
+                        <span class="absolute bottom-3 right-3 bg-black/75 text-white text-[10px] font-medium px-2 py-0.5 rounded backdrop-blur-sm">04:15</span>
+                    </div>
+                    
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="bg-brand/10 text-brand text-[11px] font-semibold px-2.5 py-1 rounded-full">Konservasi</span>
+                                <span class="text-xs font-medium text-brand/70">Video Dokumenter</span>
+                            </div>
+                            <h3 class="text-base font-bold text-brand mb-2">Pemetaan Hutan Sagu Adat</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
+                                Dokumentasi visual pemetaan terpartisipasi wilayah dusun sagu milik komunitas adat di Jayapura.
+                            </p>
+                        </div>
+                        <a href="#connect" class="text-sm font-semibold text-brand pt-4 border-t border-brand/10 flex items-center gap-2 hover:gap-3 transition-all">
+                            Tonton Selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Video Item 2 -->
+                <div x-show="filter === 'all' || filter === 'edukasi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft overflow-hidden flex flex-col card-hover">
+                    <!-- Video Cover Thumbnail (Aspect Ratio 16:9 YouTube) -->
+                    <div class="relative aspect-video bg-gray-900 group cursor-pointer overflow-hidden">
+                        <img src="https://media.istockphoto.com/id/182663065/id/foto/pasar-tropis.jpg?s=2048x2048&w=is&k=20&c=th8D9z_o8z5D1bGCuU740heqsIuUO52Q6CEjOPbadXc=" alt="Sekolah Lapangan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-14 h-14 bg-brand/90 text-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-brand transition-all duration-300">
+                                <i class="fa-solid fa-play text-xl ml-1"></i>
+                            </div>
+                        </div>
+                        <span class="absolute bottom-3 right-3 bg-black/75 text-white text-[10px] font-medium px-2 py-0.5 rounded backdrop-blur-sm">08:42</span>
+                    </div>
+                    
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="bg-brand/10 text-brand text-[11px] font-semibold px-2.5 py-1 rounded-full">Edukasi</span>
+                                <span class="text-xs font-medium text-brand/70">Tutorial Lapangan</span>
+                            </div>
+                            <h3 class="text-base font-bold text-brand mb-2">Sekolah Lapangan Pangan Papua</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
+                                Aktivitas pelatihan organik langsung di kebun bersama para pemuda lokal Papua.
+                            </p>
+                        </div>
+                        <a href="#connect" class="text-sm font-semibold text-brand pt-4 border-t border-brand/10 flex items-center gap-2 hover:gap-3 transition-all">
+                            Tonton Selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Video Item 3 -->
+                <div x-show="filter === 'all' || filter === 'ekonomi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft overflow-hidden flex flex-col card-hover">
+                    <!-- Video Cover Thumbnail (Aspect Ratio 16:9 YouTube) -->
+                    <div class="relative aspect-video bg-gray-900 group cursor-pointer overflow-hidden">
+                        <img src="https://media.istockphoto.com/id/1196262629/id/foto/sukun-terbakar-di-papua-nugini.jpg?s=2048x2048&w=is&k=20&c=ghZiDeKUH3rY-zzE_RTUGumxfBBtsB8mBPJhA3U7Y3g=" alt="Pemasaran Sagu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-14 h-14 bg-brand/90 text-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-brand transition-all duration-300">
+                                <i class="fa-solid fa-play text-xl ml-1"></i>
+                            </div>
+                        </div>
+                        <span class="absolute bottom-3 right-3 bg-black/75 text-white text-[10px] font-medium px-2 py-0.5 rounded backdrop-blur-sm">05:20</span>
+                    </div>
+                    
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="bg-brand/10 text-brand text-[11px] font-semibold px-2.5 py-1 rounded-full">Ekonomi</span>
+                                <span class="text-xs font-medium text-brand/70">Kisah Sukses</span>
+                            </div>
+                            <h3 class="text-base font-bold text-brand mb-2">Pemasaran Hasil Tani Keladi & Sagu</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
+                                Perjalanan mama-mama pedagang membawa hasil bumi ke pasar perkotaan.
+                            </p>
+                        </div>
+                        <a href="#connect" class="text-sm font-semibold text-brand pt-4 border-t border-brand/10 flex items-center gap-2 hover:gap-3 transition-all">
+                            Tonton Selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+<!-- ==========================================
+     SECTION 2: PHOTOS (#photos)
+     ========================================== -->
+    <section id="photos" class="py-20 bg-gray-50/50 border-t border-brand/5" x-data="{ filter: 'all' }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-brand bg-brand/10 px-3.5 py-1.5 rounded-full">
+                        Dokumentasi Foto
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-brand mt-4 tracking-tight">Photo Gallery</h2>
+                    <div class="w-16 h-1 bg-brand/30 rounded-full mt-3"></div>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                    <button @click="filter = 'all'" :class="filter === 'all' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Semua</button>
+                    <button @click="filter = 'konservasi'" :class="filter === 'konservasi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Konservasi</button>
+                    <button @click="filter = 'edukasi'" :class="filter === 'edukasi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Edukasi</button>
+                    <button @click="filter = 'ekonomi'" :class="filter === 'ekonomi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Ekonomi</button>
+                </div>
+            </div>
+
+            <!-- Photo Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+                <!-- Photo Item 2 (Aspect Ratio 4:5) -->
+                <div x-show="filter === 'all' || filter === 'edukasi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft overflow-hidden flex flex-col card-hover">
+                    <div class="relative aspect-[4/5] bg-gray-100 group overflow-hidden">
+                        <img src="./img/img4.jpeg" alt="Sekolah Lapangan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                        
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <span class="bg-brand text-white text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">Edukasi</span>
+                            <h3 class="text-base font-bold mb-1 leading-snug">Praktik Kebun Organik</h3>
+                            <p class="text-xs text-gray-200 line-clamp-2">Pelatihan pembuatan pupuk alami dari bahan sisa tanaman lokal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo Item 3 (Aspect Ratio 4:5) -->
+                <div x-show="filter === 'all' || filter === 'ekonomi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft overflow-hidden flex flex-col card-hover">
+                    <div class="relative aspect-[4/5] bg-gray-100 group overflow-hidden">
+                        <img src="./img/img5.jpeg" alt="Hasil Tani Mama-mama" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                        
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <span class="bg-brand text-white text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">Ekonomi</span>
+                            <h3 class="text-base font-bold mb-1 leading-snug">Hasil Tani Keladi & Sagu</h3>
+                            <p class="text-xs text-gray-200 line-clamp-2">Mama-mama pedagang memanen keladi berkualitias tinggi untuk pasar lokal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo Item 3 (Aspect Ratio 4:5) -->
+                <div x-show="filter === 'all' || filter === 'ekonomi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft overflow-hidden flex flex-col card-hover">
+                    <div class="relative aspect-[4/5] bg-gray-100 group overflow-hidden">
+                        <img src="./img/img6.jpeg" alt="Hasil Tani Mama-mama" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                        
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <span class="bg-brand text-white text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">Ekonomi</span>
+                            <h3 class="text-base font-bold mb-1 leading-snug">Hasil Tani Keladi & Sagu</h3>
+                            <p class="text-xs text-gray-200 line-clamp-2">Mama-mama pedagang memanen keladi berkualitias tinggi untuk pasar lokal.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    
+    <!-- 2. ABOUT US SECTION -->
+<section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            
+            <!-- Kolom Kiri: Judul & Konten Teks -->
+            <div class="lg:col-span-7 flex flex-col">
+                <!-- Section Header -->
+                <div class="mb-8">
+                    <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-brand bg-brand/10 px-3.5 py-1.5 rounded-full">
+                        Tentang Kami
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-brand mt-4 tracking-tight">About Us</h2>
+                    <div class="w-16 h-1 bg-brand/30 rounded-full mt-3"></div>
+                </div>
+
+                <!-- Quote -->
+                <div class="bg-brand-bg/70 p-6 md:p-8 rounded-2xl mb-8 border border-brand/5 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-brand rounded-l-2xl"></div>
+                    <p class="text-base md:text-lg font-medium text-brand leading-relaxed pl-3">
+                        "Papuan Food Guard Community lahir dari kesadaran mendalam akan pentingnya menjaga sistem pangan lokal Papua yang kaya, mandiri, dan berakar pada kearifan leluhur di tengah ancaman alih fungsi lahan dan ketergantungan pangan luar."
+                    </p>
+                </div>
+
+                <!-- Visi, Misi, Nilai (Stacked Vertical / Grid Kiri) -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-white p-5 rounded-2xl border border-brand/8 shadow-soft card-hover">
+                        <div class="w-9 h-9 bg-brand text-white rounded-xl flex items-center justify-center font-bold text-xs mb-4 shadow-soft">
+                            01
+                        </div>
+                        <h3 class="text-base font-bold text-brand mb-2">Visi Utama</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Terwujudnya kedaulatan pangan masyarakat Papua yang mandiri, adil, berkeberlanjutan, serta berlandaskan perlindungan hak-hak adat dan ekologi lokal.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-brand/8 shadow-soft card-hover">
+                        <div class="w-9 h-9 bg-brand text-white rounded-xl flex items-center justify-center font-bold text-xs mb-4 shadow-soft">
+                            02
+                        </div>
+                        <h3 class="text-base font-bold text-brand mb-2">Misi Gerakan</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Mengadvokasi perlindungan lahan pangan adat, mengedukasi generasi muda Papua, serta mendokumentasikan kearifan lokal pengelolaan tanaman tradisional.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-brand/8 shadow-soft card-hover">
+                        <div class="w-9 h-9 bg-brand text-white rounded-xl flex items-center justify-center font-bold text-xs mb-4 shadow-soft">
+                            03
+                        </div>
+                        <h3 class="text-base font-bold text-brand mb-2">Nilai Dasar</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed space-y-1">
+                            <span class="block"><strong class="text-brand">Kearifan Adat:</strong> Pengetahuan lokal.</span>
+                            <span class="block"><strong class="text-brand">Keadilan:</strong> Tanpa merusak alam.</span>
+                            <span class="block"><strong class="text-brand">Solidaritas:</strong> Menguatkan jaringan.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan: Foto Portrait 4:5 -->
+            <div class="lg:col-span-5 w-full">
+                <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg border border-brand/10 group">
+                    <img src="./img/img1.jpeg" alt="Papuan Food Guard Community" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <!-- Subtle Dark Gradient Overlay at Bottom -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand/60 via-transparent to-transparent opacity-60"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+    <!-- 3. WHAT WE DO SECTION -->
+    <section id="what-we-do" class="py-20 bg-brand-bg/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-brand bg-brand/10 px-3.5 py-1.5 rounded-full">
+                    Fokus Aksi
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brand mt-4 tracking-tight">What We Do</h2>
+                <p class="text-sm text-gray-500 font-medium mt-2">4 Pilar Utama Pendekatan Gerakan Jaga Pangan Papua</p>
+                <div class="w-16 h-1 bg-brand/30 rounded-full mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+                <!-- Konservasi -->
+                <div class="md:col-span-8 bg-white p-8 rounded-2xl shadow-soft border border-brand/5 flex flex-col justify-between card-hover">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center">
+                                <i class="fa-solid fa-hands-holding-circle text-lg text-brand"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-brand">1. Konservasi & Bank Benih Lokal</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                            Mengidentifikasi, mendokumentasikan, dan memelihara keanekaragaman varietas tanaman pangan lokal seperti sagu, keladi (taro), ubi jalar, dan buah-buahan hutan hayati agar tidak punah ditelan modernisasi.
+                        </p>
+                    </div>
+                    <div class="bg-brand-bg/80 px-4 py-3 rounded-xl text-xs font-semibold text-brand flex justify-between items-center">
+                        <span>Status: Pendampingan Aktif Komunitas</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-brand/60"></i>
+                    </div>
+                </div>
+
+                <!-- Edukasi -->
+                <div class="md:col-span-4 bg-brand text-white p-8 rounded-2xl shadow-soft-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center">
+                                <i class="fa-solid fa-graduation-cap text-lg text-brand-accent"></i>
+                            </div>
+                            <h3 class="text-lg font-bold">2. Edukasi & Regenerasi</h3>
+                        </div>
+                        <p class="text-white/85 text-sm leading-relaxed mb-6">
+                            Mendorong keterlibatan pemuda dan pelajar Papua melalui Sekolah Lapangan Pangan Tradisional dan lokakarya pengetahuan ekologi lokal.
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-semibold tracking-wide bg-white/15 text-white px-3 py-1.5 rounded-full inline-block w-fit">Anak Muda Papua</span>
+                </div>
+
+                <!-- Advokasi -->
+                <div class="md:col-span-4 bg-white p-8 rounded-2xl shadow-soft border border-brand/5 flex flex-col justify-between card-hover">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center">
+                                <i class="fa-solid fa-shield-halved text-lg text-brand"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-brand">3. Advokasi Hak Pangan</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                            Mendukung pengakuan hukum bagi hutan sagu dan kebun adat, serta mendorong kebijakan publik yang memprioritaskan pangan lokal.
+                        </p>
+                    </div>
+                    <span class="text-xs font-semibold text-brand/70 pt-3 border-t border-brand/10">Pemetaan & Proteksi Adat</span>
+                </div>
+
+                <!-- Ekonomi -->
+                <div class="md:col-span-8 bg-white p-8 rounded-2xl shadow-soft border border-brand/5 flex flex-col justify-between card-hover">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center">
+                                <i class="fa-solid fa-store text-lg text-brand"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-brand">4. Rantai Nilai & Ekonomi Lokal</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                            Memperkuat kapasitas pengolahan, pengemasan, dan pemasaran produk pangan olahan lokal agar memiliki daya saing tinggi di pasar lokal maupun nasional tanpa mengorbankan kelestarian alam.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2.5 text-center text-xs font-semibold">
+                        <div class="px-3 py-2.5 rounded-xl bg-brand-bg text-brand">Pengolahan Sagu</div>
+                        <div class="px-3 py-2.5 rounded-xl bg-brand-bg text-brand">Produk Olahan Keladi</div>
+                        <div class="px-3 py-2.5 rounded-xl bg-brand-bg text-brand col-span-2 md:col-span-1">Pasar Digital</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. OUR PROJECT SECTION -->
+    <section id="our-project" class="py-20 bg-white" x-data="{ filter: 'all' }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-brand bg-brand/10 px-3.5 py-1.5 rounded-full">
+                        Inisiatif Lapangan
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-brand mt-4 tracking-tight">Our Project</h2>
+                    <div class="w-16 h-1 bg-brand/30 rounded-full mt-3"></div>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                    <button @click="filter = 'all'" :class="filter === 'all' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Semua</button>
+                    <button @click="filter = 'konservasi'" :class="filter === 'konservasi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Konservasi</button>
+                    <button @click="filter = 'edukasi'" :class="filter === 'edukasi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Edukasi</button>
+                    <button @click="filter = 'ekonomi'" :class="filter === 'ekonomi' ? 'bg-brand text-white shadow-soft' : 'bg-white text-brand border border-brand/15 hover:border-brand/30'" class="px-4 py-2 rounded-full transition-all duration-200">Ekonomi</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div x-show="filter === 'all' || filter === 'konservasi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft p-6 flex flex-col justify-between card-hover">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-brand/10 text-brand text-[11px] font-semibold px-2.5 py-1 rounded-full">Konservasi</span>
+                            <span class="text-xs font-medium text-brand/70">Berjalan</span>
+                        </div>
+                        <h3 class="text-base font-bold text-brand mb-3">Pemetaan Hutan Sagu Adat</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                            Pendokumentasian digital dan pemetaan terpartisipasi wilayah dusun sagu milik komunitas adat di Jayapura dan sekitarnya.
+                        </p>
+                    </div>
+                    <a href="#connect" class="text-sm font-semibold text-brand pt-4 border-t border-brand/10 flex items-center gap-2 hover:gap-3 transition-all">
+                        Lihat Progres <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Project 2 -->
+                <div x-show="filter === 'all' || filter === 'edukasi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft p-6 flex flex-col justify-between card-hover">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-brand/10 text-brand text-[11px] font-semibold px-2.5 py-1 rounded-full">Edukasi</span>
+                            <span class="text-xs font-medium text-brand/70">Rutin</span>
+                        </div>
+                        <h3 class="text-base font-bold text-brand mb-3">Sekolah Lapangan Pangan Papua</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                            Program pelatihan langsung di kebun bagi pemuda Papua tentang budidaya tanaman lokal tanpa bahan kimia sintetis.
+                        </p>
+                    </div>
+                    <a href="#connect" class="text-sm font-semibold text-brand pt-4 border-t border-brand/10 flex items-center gap-2 hover:gap-3 transition-all">
+                        Lihat Progres <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Project 3 -->
+                <div x-show="filter === 'all' || filter === 'ekonomi'" class="bg-white rounded-2xl border border-brand/8 shadow-soft p-6 flex flex-col justify-between card-hover">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-brand/10 text-brand text-[11px] font-semibold px-2.5 py-1 rounded-full">Ekonomi</span>
+                            <span class="text-xs font-medium text-brand/70">Inkubasi</span>
+                        </div>
+                        <h3 class="text-base font-bold text-brand mb-3">Pemasaran Hasil Tani Keladi & Sagu</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                            Fasilitasi akses pasar langsung bagi mama-mama pedagang dan petani lokal ke konsumen perkotaan.
+                        </p>
+                    </div>
+                    <a href="#connect" class="text-sm font-semibold text-brand pt-4 border-t border-brand/10 flex items-center gap-2 hover:gap-3 transition-all">
+                        Lihat Progres <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONNECT WITH US SECTION -->
+    <section id="connect" class="py-20 bg-gradient-to-b from-brand-bg/40 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                
+                <!-- Left Info -->
+                <div class="lg:col-span-5 bg-brand text-white p-8 md:p-10 rounded-2xl shadow-soft-xl">
+                    <span class="inline-flex text-xs font-semibold tracking-wide bg-white/15 text-white px-3.5 py-1.5 rounded-full">
+                        Hubungi Kami
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mt-5 mb-4 tracking-tight">Connect With Us</h2>
+                    <p class="text-sm text-white/80 font-medium leading-relaxed mb-8">
+                        Mari berkolaborasi, menjadi relawan, atau mendukung gerakan perlindungan dan pemajuan pangan lokal Papua.
+                    </p>
+
+                    <div class="space-y-5 text-sm">
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 bg-white/15 rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-location-dot text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xs mb-0.5">Sekretariat</h4>
+                                <p class="text-white/75 text-xs">Alamat sementara: Jln.Jeruk Nipis No.117, Gedung YPMD Lt.II, Wahno, Kotaraja, Abepura, Jayapura, Papua. </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 bg-white/15 rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-envelope text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xs mb-0.5">Email</h4>
+                                <p class="text-white/75 text-xs">mamzan584@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 bg-white/15 rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xs mb-0.5">WhatsApp / Kontak</h4>
+                                <p class="text-white/75 text-xs">+6281312186290</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social -->
+                    <div class="mt-10 pt-6 border-t border-white/15 flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand transition-all duration-200">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand transition-all duration-200">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand transition-all duration-200">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="lg:col-span-7 bg-white p-8 md:p-10 rounded-2xl shadow-soft border border-brand/5" x-data="{ submitted: false }">
+                    <h3 class="text-xl font-bold text-brand mb-1.5">Kirim Pesan / Dukungan</h3>
+                    <p class="text-sm text-gray-500 mb-6">Isi formulir di bawah ini untuk terhubung secara langsung dengan tim kami.</p>
+
+                    <div x-show="submitted" class="bg-brand text-white p-6 rounded-2xl mb-6">
+                        <h4 class="font-bold text-base mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check"></i> Terima Kasih!
+                        </h4>
+                        <p class="text-sm text-white/90">Pesan Anda telah terkirim. Tim Papuan Food Guard Community akan segera menghubungi Anda.</p>
+                    </div>
+
+                    <form x-show="!submitted" @submit.prevent="submitted = true" class="space-y-5">
+                        <div>
+                            <label class="block text-xs font-semibold text-brand mb-1.5">Nama Lengkap</label>
+                            <input type="text" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-brand mb-1.5">Email</label>
+                                <input type="email" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-brand mb-1.5">Nomor WhatsApp</label>
+                                <input type="tel" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-brand mb-1.5">Bentuk Dukungan / Kolaborasi</label>
+                            <select class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition">
+                                <option>Ingin Menjadi Relawan</option>
+                                <option>Mitra Kolaborasi Program</option>
+                                <option>Dukungan Riset / Publikasi</option>
+                                <option>Pertanyaan Umum</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-brand mb-1.5">Pesan / Gagasan Anda</label>
+                            <textarea rows="4" required class="w-full bg-brand-bg/50 border border-brand/10 rounded-xl px-4 py-3 text-sm text-brand focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/30 transition resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-modern bg-brand text-white font-semibold py-4 text-sm rounded-xl shadow-soft flex items-center justify-center gap-2">
+                            Kirim Pesan Sekarang <i class="fa-solid fa-paper-plane text-sm"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-seedling text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-base font-bold tracking-tight block leading-none">Papuan Food Guard</span>
+                        <span class="text-[10px] text-white/50 tracking-wide uppercase">Community</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium text-white/70">
+                    <a href="#home" class="hover:text-white transition">Home</a>
+                    <a href="#about" class="hover:text-white transition">About Us</a>
+                    <a href="#what-we-do" class="hover:text-white transition">What We Do</a>
+                    <a href="#our-project" class="hover:text-white transition">Our Project</a>
+                    <a href="#connect" class="hover:text-white transition">Connect</a>
+                </div>
+            </div>
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-white/40 gap-3">
+                <p>&copy; 2026 Papuan Food Guard Community. All rights reserved.</p>
+                <p class="tracking-wide text-white/30">Pangan Lokal · Kedaulatan · Papua</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
